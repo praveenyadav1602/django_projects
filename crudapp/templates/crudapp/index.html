@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index Page</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+
+<div class="row mt-5 ml-5">
+    <div class="col-sm-4">
+        <h4 class="text-center alert alert-info">Add new Student</h4>
+
+<form method='POST'>
+    {% csrf_token %}
+    {{ form.as_p }}
+<input type="submit" class="btn btn-success" value="SAVE">
+
+
+</form>
+
+<div class="mt-5">
+<a class="btn btn-primary" href="/" role="button">Go To Project Root </a>
+</div>
+        </div>
+        
+
+<div class="col-sm-7">
+<table class="table">
+    <h4 class="text-center alert alert-info">Show Student Info</h4>
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">NAME</th>
+            <th scope="col">ROLL</th>
+            <th scope="col">EMAIL</th>
+            <th scope="col">ACTION</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            {% for stu in st %}
+            <th scope="row">{{stu.id}}</th>
+            <td>{{stu.name}}</td>
+            
+        <td>{{stu.roll}}</td>
+        <td>{{stu.email}}</td>
+        <td><a class="btn btn-primary" href="{% url 'update' stu.id %}" role="button">Update</a>
+            <a class="btn btn-danger" href="{% url 'delete' stu.id %}" role="button">Delete</a>
+
+
+
+        </td>
+      </tr>
+      
+    </tbody>
+    {% endfor %}
+  </table>
+</div>
+  
+</div>
+
+</body>
+</html>
